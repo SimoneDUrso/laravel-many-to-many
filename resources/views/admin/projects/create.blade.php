@@ -62,7 +62,8 @@
                                                     <label for=""
                                                         class="form-check-label">{{ $technology->name }}</label>
                                                     <input type="checkbox" name="technologies[]" id=""
-                                                        class="form-check-input" value="{{ $technology->id }}">
+                                                        class="form-check-input" value="{{ $technology->id }}"
+                                                        @checked(is_array(old('technologies')) && in_array($technology->id, old('technologies')))>
                                                 </div>
                                             @endforeach
                                         </div>

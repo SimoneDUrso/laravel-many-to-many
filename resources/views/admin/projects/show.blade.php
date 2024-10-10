@@ -12,23 +12,44 @@
                         <!-- Tabella dettagli progetto -->
                         <table class="table table-bordered table-hover shadow-sm rounded">
                             <tbody>
+
+                                {{-- Nome progetto --}}
                                 <tr>
                                     <th class="bg-light text-end w-50">Nome Progetto:</th>
                                     <td class="fw-bold">{{ $project->name }}</td>
                                 </tr>
+
+                                {{-- Categoria progetto --}}
                                 <tr>
                                     <th class="bg-light text-end w-50">Categoria</th>
                                     <td class="fw-bold">{{ $project->type->name ?? 'tipo non selezionato' }}</td>
                                 </tr>
 
+                                {{-- Data progetto --}}
                                 <tr>
                                     <th class="bg-light text-end">Data Progetto:</th>
                                     <td>{{ $project->date }}</td>
                                 </tr>
+
+                                {{-- Descrizione progetto --}}
                                 <tr>
                                     <th class="bg-light text-end">Descrizione:</th>
                                     <td>{{ $project->description }}</td>
                                 </tr>
+
+                                {{-- Tecnologia progetto --}}
+                                <tr>
+                                    <th class="bg-light text-end">Tecnologia progetto:</th>
+                                    <td>
+                                        @forelse ($project->technologies as $technology)
+                                            {{ $technology->name }}
+                                        @empty
+                                            Il progetto non ha delle tecnologie assegnate
+                                        @endforelse
+                                    </td>
+                                </tr>
+
+                                {{-- Immagine progetto --}}
                                 <tr>
                                     <th class="bg-light text-end">Immagine relativa al progetto:</th>
                                     @if (Str::startsWith($project->image_project, 'https'))

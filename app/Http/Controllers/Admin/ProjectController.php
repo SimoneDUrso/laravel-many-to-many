@@ -50,8 +50,6 @@ class ProjectController extends Controller
     {
         $form_data = $request->all();
 
-        dd($request->all());
-
         $form_data['slug'] = Project::generateSlug($form_data['name']);
 
         if ($request->hasFile('image_project')) {
@@ -62,6 +60,10 @@ class ProjectController extends Controller
         $project->fill($form_data);
 
         $project->save();
+
+        if ($request->has('technologies')) {
+            $project->technologies()->sync($request->technologies);
+        }
 
         return redirect()->route('admin.projects.index');
     }
