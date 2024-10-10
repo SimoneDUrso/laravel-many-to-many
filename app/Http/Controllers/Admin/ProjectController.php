@@ -136,6 +136,8 @@ class ProjectController extends Controller
         if (Str::startsWith($project->image_project, 'https') === false) {
             Storage::disk('public')->delete($project->image_project);
         }
+
+        $project->technologies()->sync([]);
         $project->delete();
         return redirect()->route('admin.projects.index');
     }
