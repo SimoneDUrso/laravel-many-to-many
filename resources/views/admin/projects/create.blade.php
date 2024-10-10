@@ -52,6 +52,23 @@
                                     </div>
                                 </div>
 
+                                {{-- Tecnologie del progetto --}}
+                                <div class="col-md-6">
+                                    <div class="mb-4">
+                                        <label for="" class="control-label">Selezione Tecnologia</label>
+                                        <div>
+                                            @foreach ($technologies as $technology)
+                                                <div class="form-check-inline">
+                                                    <label for=""
+                                                        class="form-check-label">{{ $technology->name }}</label>
+                                                    <input type="checkbox" name="technologies[]" id=""
+                                                        class="form-check-input" value="{{ $technology->id }}">
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <!-- Descrizione Progetto -->
                                 <div class="col-md-6">
                                     <div class="mb-4">

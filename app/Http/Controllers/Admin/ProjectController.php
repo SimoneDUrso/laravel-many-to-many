@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Project;
 use App\Models\Type;
+use App\Models\Technology;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
@@ -34,7 +36,8 @@ class ProjectController extends Controller
     public function create()
     {
         $types = Type::all();
-        return view('admin.projects.create', compact('types'));
+        $technologies = Technology::all();
+        return view('admin.projects.create', compact('types', 'technologies'));
     }
 
     /**
@@ -46,6 +49,8 @@ class ProjectController extends Controller
     public function store(StoreProjectRequest $request, Project $project)
     {
         $form_data = $request->all();
+
+        dd($request->all());
 
         $form_data['slug'] = Project::generateSlug($form_data['name']);
 
