@@ -54,6 +54,29 @@
                     </div>
                 </div>
 
+                {{-- Tecnologie del progetto --}}
+                <div class="col-md-6">
+                    <div class="mb-4">
+                        <label for="" class="control-label">Selezione Tecnologia</label>
+                        <div>
+                            @foreach ($technologies as $technology)
+                                <div class="form-check-inline">
+                                    @if ($errors->any())
+                                        <input type="checkbox" name="technologies[]" id="" class="form-check-input"
+                                            value="{{ $technology->id }}"
+                                            {{ in_array($technology->id, old('technologies') ? 'checked' : '') }}>
+                                    @else
+                                        <label for="" class="form-check-label">{{ $technology->name }}</label>
+                                        <input type="checkbox" name="technologies[]" id="" class="form-check-input"
+                                            value="{{ $technology->id }}"
+                                            {{ $project->technologies->contains($technology->id) ? 'checked' : '' }}>
+                                    @endif
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+
                 <div class="col-12 col-md-6">
                     <label for="image_project" class="form-label">Immagine progetto</label>
                     <input type="file" class="form-control rounded-pill" name="image_project" id="image_project"
